@@ -2,7 +2,6 @@
 //  ContentView.swift
 //  WeSplit
 //
-//  Created by Vahagn Martirosyan on 2020-12-30.
 //
 
 import SwiftUI
