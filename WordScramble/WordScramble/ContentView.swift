@@ -2,7 +2,6 @@
 //  ContentView.swift
 //  WordScramble
 //
-//  Created by Vahagn Martirosyan on 2021-01-02.
 //
 
 import SwiftUI
