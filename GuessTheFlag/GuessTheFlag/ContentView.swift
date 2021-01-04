@@ -2,6 +2,7 @@
 //  ContentView.swift
 //  GuessTheFlag
 //
+//  Created by Vahagn Martirosyan on 2020-12-31.
 //
 
 import SwiftUI
@@ -16,7 +17,7 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     @State private var scoreTitle2 = ""
     @State private var score = 0
-    
+    @State private var animationDegrees = 0.0
     var body: some View {
         NavigationView{
             ZStack{
@@ -30,11 +31,21 @@ struct ContentView: View {
                     }.foregroundColor(.white)
                     
                     ForEach(0..<3,id:\.self){ count in
+                        
                         Button(action: {
+                            
                             chosenFlag(a: count)
+                            
                         }, label: {
-                            FlagImage(countryName: countries[count])
+                            
+                                FlagImage(countryName: countries[count])
+                                    
+                    
                         })
+                        .rotation3DEffect(
+                            Angle(degrees: count == correctAnswer ? animationDegrees : 0),
+                            axis: (x: 0.0, y: 1.0, z: 0.0)
+                        )
                     }
                     Text("Your score: \(score)")
                         .foregroundColor(.white)
@@ -57,7 +68,9 @@ struct ContentView: View {
     }
     
     func chosenFlag(a:Int){
-        
+        withAnimation{
+            animationDegrees += 360
+        }
         if a == correctAnswer{
             scoreTitle = "Correct"
             score += 1
