@@ -31,7 +31,15 @@ struct DetailView: View {
                         .clipShape(Capsule())
                         .offset(x: -5, y: -5)
                     }
+                    
+                    if book.date != nil{
+                        Text(book.date!)
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                            .offset(x: -3, y: 0)
+                    }
                 }
+                
                 Text(book.author ?? "Unknown author")
                     .font(.title)
                     .foregroundColor(.secondary)
@@ -40,6 +48,9 @@ struct DetailView: View {
                 
                 RatingView(rating: .constant(Int(book.rating)))
                     .font(.largeTitle)
+                
+                
+                
                 Spacer()
             }
         }

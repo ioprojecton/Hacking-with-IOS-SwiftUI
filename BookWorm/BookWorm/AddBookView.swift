@@ -16,6 +16,7 @@ struct AddBookView: View {
     @State private var genre = ""
     @State private var review = ""
     @State private var rating = 3
+
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
     var body: some View {
@@ -41,11 +42,16 @@ struct AddBookView: View {
                 Section{
                     Button(action: {
                         let newBook = Book(context: moc)
+                        let myDate = Date()
+                        let myDateFormatter = DateFormatter()
+                        myDateFormatter.dateStyle = .long
+                        
                         newBook.title = title
                         newBook.author = author
                         newBook.genre = genre.isEmpty ? "Unknown" : genre
                         newBook.rating = Int16(rating)
                         newBook.review = review
+                        newBook.date = myDateFormatter.string(from: myDate)
                         
                         do{
                             try moc.save()
